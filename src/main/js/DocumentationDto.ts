@@ -14,16 +14,8 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-package com.cloudogu.documentation.viewer;
-
-import org.junit.jupiter.api.Test;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-class SampleResourceTest {
-
-  @Test
-  void add() {
-    assertThat(2 + 2).isEqualTo(4);
-  }
+export interface DocumentationDto {
+  branchName: string;
+  basePath: string;
+  landingPage: string;
 }

@@ -15,5 +15,8 @@
  */
 
 import { binder } from "@scm-manager/ui-extensions";
+import DocumentationViewerNavLink from "./DocumentationViewerNavLink";
 
-binder.bind("", "");
+binder.bind("repository.navigation", DocumentationViewerNavLink, {
+  predicate: (props) => !!props.repository._embedded?.documentationViewer,
+});

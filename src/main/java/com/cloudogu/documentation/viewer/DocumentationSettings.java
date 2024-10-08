@@ -16,18 +16,12 @@
 
 package com.cloudogu.documentation.viewer;
 
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
+import lombok.Getter;
+import lombok.Setter;
 
-@Path("v2/sample")
-class SampleResource {
-
-  @GET
-  @Produces(MediaType.TEXT_PLAIN)
-  public String sample() {
-    return "Sample";
-  }
-
+@Getter
+@Setter
+public class DocumentationSettings {
+  private String basePath = "/docs";
+  private String landingPage = "home.md";
 }

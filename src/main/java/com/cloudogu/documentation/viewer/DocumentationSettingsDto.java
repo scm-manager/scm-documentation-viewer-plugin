@@ -14,24 +14,21 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-plugins {
-  id 'org.scm-manager.smp' version '0.18.0'
-}
+package com.cloudogu.documentation.viewer;
 
-dependencies {
-  implementation 'org.yaml:snakeyaml:2.3'
-}
+import de.otto.edison.hal.HalRepresentation;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-scmPlugin {
-  scmVersion = "3.0.0"
-  displayName = "Documentation Viewer"
-  description = "Plugin to view and edit the markdown documentation of a repository"
-  author = "Cloudogu GmbH"
-  category = "Documentation"
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class DocumentationSettingsDto extends HalRepresentation {
+  private String branchName;
+  private String basePath;
+  private String landingPage;
 
-  openapi {
-    packages = [
-      "com.cloudogu.documentation.viewer"
-    ]
-  }
 }
