@@ -1,6 +1,6 @@
 ---
-title: Dokumentation
-subtitle: Documentation Viewer Plugin Dokumentation
+title: Documentation
+subtitle: Documentation Viewer Plugin
 ---
 
 This documentation describes the usage of the scm-documentation-viewer-plugin.

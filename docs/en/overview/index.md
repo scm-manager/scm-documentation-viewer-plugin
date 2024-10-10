@@ -1,5 +1,5 @@
 ---
-title: Übersicht
+title: Overview
 ---
 
 The documentation viewer plugin eases the management of a markdown based documentation contained within a repository.
