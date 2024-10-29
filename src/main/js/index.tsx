@@ -14,9 +14,24 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-import { binder } from "@scm-manager/ui-extensions";
+import { binder, RenderableExtensionPointDefinition } from "@scm-manager/ui-extensions";
 import DocumentationViewerNavLink from "./DocumentationViewerNavLink";
+import { DocumentationEditor } from "./DocumentationEditor";
+
+type CodeEditorExtension = RenderableExtensionPointDefinition<
+  "editor.edit.replace.editor",
+  {
+    content?: string;
+    language: string;
+    disabled?: boolean;
+    onChange: (value: string) => void;
+  }
+>;
 
 binder.bind("repository.navigation", DocumentationViewerNavLink, {
   predicate: (props) => !!props.repository._embedded?.documentationViewer,
+});
+
+binder.bind<CodeEditorExtension>("editor.edit.replace.editor", DocumentationEditor, {
+  predicate: (props) => props.language === "markdown",
 });

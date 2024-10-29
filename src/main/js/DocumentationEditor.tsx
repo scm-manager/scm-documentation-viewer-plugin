@@ -14,25 +14,31 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-plugins {
-  id 'org.scm-manager.smp' version '0.18.0'
-}
+import React, { FC, MutableRefObject } from "react";
+import { MarkdownEditor, useMarkdownEditor } from "./MarkdownEditor";
 
-dependencies {
-  implementation 'org.yaml:snakeyaml:2.3'
-  plugin 'sonia.scm.plugins:scm-editor-plugin:3.2.1-SNAPSHOT'
-}
+type Props = {
+  content?: string;
+  disabled?: boolean;
+  className?: string;
+  onChange: (value: string) => void;
+  ref?: MutableRefObject<any>;
+};
 
-scmPlugin {
-  scmVersion = "3.0.0"
-  displayName = "Documentation Viewer"
-  description = "Plugin to view and edit the markdown documentation of a repository"
-  author = "Cloudogu GmbH"
-  category = "Documentation"
+export const DocumentationEditor: FC<Props> = ({ content, onChange, disabled }) => {
+  const editorInstance = useMarkdownEditor({
+    onChange: async (event) => {
+      onChange(await event.getMarkdownString());
+    },
+  });
 
-  openapi {
-    packages = [
-      "com.cloudogu.documentation.viewer"
-    ]
+  if (disabled) {
+    return <></>;
   }
-}
+
+  return (
+    <>
+      <MarkdownEditor initialContent={content || ""} editorInstance={editorInstance} />
+    </>
+  );
+};

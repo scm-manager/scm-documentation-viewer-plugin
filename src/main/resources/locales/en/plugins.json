@@ -1,5 +1,22 @@
 {
   "scm-documentation-viewer-plugin": {
-    "navLink": "Documentation"
+    "navLink": "Documentation",
+    "editor": {
+      "heading": "Heading {{value}}",
+      "toolbar": {
+        "paragraph": "Paragraph",
+        "ol": "Ordered list",
+        "ul": "Unordered list",
+        "code": "Inline code",
+        "quote": "Qoute",
+        "bold": "Bold",
+        "italic": "Italic",
+        "link": "Link",
+        "strikethrough": "Strike through",
+        "codeBlock": "Code block",
+        "hr": "Horizontal line",
+        "clear": "Clear formats"
+      }
+    }
   }
 }

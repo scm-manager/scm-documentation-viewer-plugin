@@ -27,7 +27,7 @@ landingPage: `home.md`
 Diese Werte sagen aus, dass die Dokumentation unter `/docs` liegt und das sich darin die Startseite mit dem Namen `home.md` befindet.
 Beide Werte sind Optional und müssen nicht gesetzt werden.
 Falls die Werte nicht gesetzt sind, wird ein Default-Wert genutzt.
-Die Default-Werte können dem, oben genannten Beispiel entnommen werden.
+Die Default-Werte können dem oben genannten Beispiel entnommen werden.
 
 ## Aufrufen der Dokumentation
 

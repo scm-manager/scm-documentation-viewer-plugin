@@ -14,25 +14,32 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-plugins {
-  id 'org.scm-manager.smp' version '0.18.0'
+.root {
+  min-height: 10rem;
+  padding: 1rem;
+  margin-top: 1px;
 }
 
-dependencies {
-  implementation 'org.yaml:snakeyaml:2.3'
-  plugin 'sonia.scm.plugins:scm-editor-plugin:3.2.1-SNAPSHOT'
+.root hr {
+  background-color: var(--scm-secondary-text);
 }
 
-scmPlugin {
-  scmVersion = "3.0.0"
-  displayName = "Documentation Viewer"
-  description = "Plugin to view and edit the markdown documentation of a repository"
-  author = "Cloudogu GmbH"
-  category = "Documentation"
+.strikethrough {
+  text-decoration: line-through;
+}
 
-  openapi {
-    packages = [
-      "com.cloudogu.documentation.viewer"
-    ]
-  }
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.codeBlock {
+  display: block;
+}
+
+.nestedListItem {
+  list-style-type: none;
 }
