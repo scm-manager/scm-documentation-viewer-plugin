@@ -17,9 +17,8 @@
 import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { Repository } from "@scm-manager/ui-types";
+import { SecondaryNavigationItem } from "@scm-manager/ui-components";
 import { DocumentationDto } from "./DocumentationDto";
-import { Link } from "react-router-dom";
-import classNames from "classnames";
 
 type Props = {
   repository: Repository;
@@ -36,12 +35,12 @@ const DocumentationViewerNavLink: FC<Props> = ({ repository }) => {
   const documentationLink = concatenatePath(repository, dto);
 
   return (
-    <li title={t("scm-documentation-viewer-plugin.navLink")}>
-      <Link to={documentationLink}>
-        <i className={classNames("fas fa-book", "fa-fw")} />
-        {t("scm-documentation-viewer-plugin.navLink")}
-      </Link>
-    </li>
+    <SecondaryNavigationItem
+      to={documentationLink}
+      icon="fas fa-book-reader"
+      label={t("scm-documentation-viewer-plugin.navLink")}
+      title={t("scm-documentation-viewer-plugin.navLink")}
+    />
   );
 };
 
