@@ -21,8 +21,8 @@ Since this plugin only supports markdown files, the name of the landing page nee
 The following shows an example configuration:
 
 ```yaml
-basePath: `/docs`
-landingPage: `home.md`
+basePath: '/docs'
+landingPage: 'home.md'
 ```
 
 With this configuration, the plugin assumes, that the documentation is stored under the `/docs` directory of the repository.

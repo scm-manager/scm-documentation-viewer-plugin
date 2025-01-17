@@ -20,8 +20,8 @@ Da hier lediglich eine Markdown-Dokumentation unterstützt wird, muss die Starts
 Im Folgenden wird ein Beispielkonfiguration dargestellt:
 
 ```yaml
-basePath: `/docs`
-landingPage: `home.md`
+basePath: '/docs'
+landingPage: 'home.md'
 ```
 
 Diese Werte sagen aus, dass die Dokumentation unter `/docs` liegt und das sich darin die Startseite mit dem Namen `home.md` befindet.
