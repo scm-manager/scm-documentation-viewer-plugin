@@ -36,6 +36,7 @@ import { COMMAND_PRIORITY_CRITICAL, EditorState, FOCUS_COMMAND, KEY_ENTER_COMMAN
 import { ListPlugin } from "@lexical/react/LexicalListPlugin";
 import { MARKDOWN_TRANSFORMERS } from "./MarkdownTransformers";
 import { TabIndentationPlugin } from "@lexical/react/LexicalTabIndentationPlugin";
+import styled from "styled-components";
 
 type OnChangeEvent = {
   getMarkdownString: () => Promise<string>;
@@ -44,6 +45,12 @@ type OnChangeEvent = {
 type MarkdownEditorInstanceOptions = {
   onChange?: (event: OnChangeEvent) => void | Promise<void>;
 };
+
+const HeightLimitedEditor = styled.div`
+  height: 20rem;
+  overflow: auto;
+  resize: vertical;
+`;
 
 export const useMarkdownEditor = (options: MarkdownEditorInstanceOptions = {}) => {
   const [editorState, setEditorState] = useState<EditorState>();
@@ -177,19 +184,19 @@ export const MarkdownEditor = ({ initialContent, editorInstance }: MarkdownEdito
     >
       <AccessibilityPlugin setAccessibilityFocus={setAccessibilityFocus} />
       <ToolbarPlugin />
-      <div className={"content"}>
-        <RichTextPlugin
-          contentEditable={<ContentEditable />}
-          ErrorBoundary={LexicalErrorBoundary}
-          placeholder={<></>}
-        />
-      </div>
-      <OnChangePlugin editorInstance={editorInstance} />
-      <MarkdownShortcutPlugin transformers={MARKDOWN_TRANSFORMERS} />
-      <LinkPlugin />
-      <ListPlugin />
-      <HorizontalRulePlugin />
-      {accessibilityFocus === "FocusInEditor" ? <TabIndentationPlugin /> : null}
+        <HeightLimitedEditor className={"content"}>
+          <RichTextPlugin
+            contentEditable={<ContentEditable />}
+            ErrorBoundary={LexicalErrorBoundary}
+            placeholder={<></>}
+          />
+        </HeightLimitedEditor>
+        <OnChangePlugin editorInstance={editorInstance} />
+        <MarkdownShortcutPlugin transformers={MARKDOWN_TRANSFORMERS} />
+        <LinkPlugin />
+        <ListPlugin />
+        <HorizontalRulePlugin />
+        {accessibilityFocus === "FocusInEditor" ? <TabIndentationPlugin /> : null}
     </LexicalComposer>
-  );
+);
 };

@@ -37,8 +37,6 @@ export const DocumentationEditor: FC<Props> = ({ content, onChange, disabled }) 
   }
 
   return (
-    <>
-      <MarkdownEditor initialContent={content || ""} editorInstance={editorInstance} />
-    </>
+    <MarkdownEditor initialContent={content || ""} editorInstance={editorInstance} />
   );
 };
