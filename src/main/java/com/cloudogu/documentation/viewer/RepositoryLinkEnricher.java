@@ -65,13 +65,13 @@ public class RepositoryLinkEnricher implements HalEnricher {
       boolean yamlDocumentationFileExists = documentationYamlExists.yamlFileExists;
       boolean ymlDocumentationFileExists = documentationYamlExists.ymlFileExists;
 
-      if (yamlDocumentationFileExists && ymlDocumentationFileExists) {
-        log.warn("documentation.yml and documentation.yaml was not found in repository {}", repository);
+      if (!yamlDocumentationFileExists && !ymlDocumentationFileExists) {
+        log.trace("documentation.yml and documentation.yaml was not found in repository {}", repository);
         return;
       }
 
-      if (!yamlDocumentationFileExists && !ymlDocumentationFileExists) {
-        log.warn("documentation.yml and documentation.yaml was found in repository {}, but only one should exist", repository);
+      if (yamlDocumentationFileExists && ymlDocumentationFileExists) {
+        log.info("documentation.yml and documentation.yaml was found in repository {}, but only one should exist", repository);
         return;
       }
 
