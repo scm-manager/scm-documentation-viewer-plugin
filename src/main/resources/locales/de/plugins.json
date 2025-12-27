@@ -7,13 +7,13 @@
         "paragraph": "Paragraph",
         "ol": "Sortierte Liste",
         "ul": "Ungeordnete Liste",
-        "code": "Inline Code",
+        "code": "Inline-Code",
         "quote": "Zitat",
         "bold": "Fett",
         "italic": "Kursiv",
         "link": "Link",
         "strikethrough": "Durchgestrichen",
-        "codeBlock": "Code Block",
+        "codeBlock": "Codeblock",
         "hr": "Horizontale Linie",
         "clear": "Formatierungen entfernen"
       }

@@ -8,11 +8,11 @@
         "ol": "Ordered list",
         "ul": "Unordered list",
         "code": "Inline code",
-        "quote": "Qoute",
+        "quote": "Quote",
         "bold": "Bold",
         "italic": "Italic",
         "link": "Link",
-        "strikethrough": "Strike through",
+        "strikethrough": "Strikethrough",
         "codeBlock": "Code block",
         "hr": "Horizontal line",
         "clear": "Clear formats"
