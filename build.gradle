@@ -19,7 +19,7 @@ plugins {
 }
 
 dependencies {
-  implementation 'org.yaml:snakeyaml:2.3'
+  implementation 'org.yaml:snakeyaml:2.5'
   plugin 'sonia.scm.plugins:scm-editor-plugin:3.3.0'
 }
 
