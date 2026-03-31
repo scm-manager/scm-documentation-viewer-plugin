@@ -4,10 +4,10 @@
   </a>
 </p>
 <h1 align="center">
-  Documentation Viewer
+  Documentation Viewer Plugin
 </h1>
 
-Plugin to view and edit the markdown documentation of a repository
+View and edit the markdown documentation of a repository
 
 ## Usage
 

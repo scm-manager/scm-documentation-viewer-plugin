@@ -26,7 +26,7 @@ dependencies {
 scmPlugin {
   scmVersion = "3.6.0"
   displayName = "Documentation Viewer"
-  description = "Plugin to view and edit the markdown documentation of a repository"
+  description = "View and edit the markdown documentation of a repository"
   author = "Cloudogu GmbH"
   category = "Documentation"
 
