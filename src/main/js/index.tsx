@@ -18,7 +18,7 @@ import { binder, RenderableExtensionPointDefinition } from "@scm-manager/ui-exte
 import DocumentationViewerNavLink from "./DocumentationViewerNavLink";
 import { DocumentationEditor } from "./DocumentationEditor";
 
-type CodeEditorExtension = RenderableExtensionPointDefinition<
+type DocCodeEditorExtension = RenderableExtensionPointDefinition<
   "editor.edit.replace.editor",
   {
     content?: string;
@@ -32,6 +32,6 @@ binder.bind("repository.navigation", DocumentationViewerNavLink, {
   predicate: (props) => !!props.repository._embedded?.documentationViewer,
 });
 
-binder.bind<CodeEditorExtension>("editor.edit.replace.editor", DocumentationEditor, {
+binder.bind<DocCodeEditorExtension>("editor.edit.replace.editor", DocumentationEditor, {
   predicate: (props) => props.language === "markdown",
 });

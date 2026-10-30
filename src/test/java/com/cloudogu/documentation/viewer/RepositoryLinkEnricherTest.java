@@ -25,6 +25,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Answers;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import sonia.scm.api.v2.resources.HalAppender;
@@ -46,6 +47,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoInteractions;
@@ -217,10 +220,28 @@ class RepositoryLinkEnricherTest {
       createBranches();
       enricher.enrich(context, appender);
 
-      verify(appender).appendEmbedded(
-        "documentationViewer",
-        createDto("/d", "index.md")
+      verifyAppended("/d", "index.md");
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"/docs", "docs", "/docs/nested", "docs/nested"})
+    @SubjectAware(value = "Professor Oak", permissions = "repository:read:1")
+    void shouldAppendWithBasePathWithAndWithoutLeadingSlash(String basePath) throws IOException {
+      String documentationYamlContent = String.format("""
+        basePath: "%s"
+        landingPage: "index.md"
+        """, basePath);
+
+      createDocumentationConfig(
+        List.of(
+          new ChildrenFiles(documentationYamlContent, "documentation.yaml")
+        )
       );
+
+      createBranches();
+      enricher.enrich(context, appender);
+
+      verifyAppended(basePath, "index.md");
     }
 
     @Test
@@ -281,10 +302,7 @@ class RepositoryLinkEnricherTest {
       createBranches();
 
       enricher.enrich(context, appender);
-      verify(appender).appendEmbedded(
-        "documentationViewer",
-        createDto("docs", "home.md")
-      );
+      verifyAppended("/docs", "home.md");
     }
 
 
@@ -303,10 +321,7 @@ class RepositoryLinkEnricherTest {
 
       createBranches();
       enricher.enrich(context, appender);
-      verify(appender).appendEmbedded(
-        "documentationViewer",
-        createDto("docs", "index.md")
-      );
+      verifyAppended("/docs", "index.md");
     }
 
     @Test
@@ -324,10 +339,7 @@ class RepositoryLinkEnricherTest {
 
       createBranches();
       enricher.enrich(context, appender);
-      verify(appender).appendEmbedded(
-        "documentationViewer",
-        createDto("d", "home.md")
-      );
+      verifyAppended("/d", "home.md");
     }
 
     private void createDocumentationConfig(List<ChildrenFiles> childrenFiles) throws IOException {
@@ -362,8 +374,14 @@ class RepositoryLinkEnricherTest {
       lenient().when(repositoryService.getBranchesCommand().getBranches()).thenReturn(branches);
     }
 
-    private DocumentationSettingsDto createDto(String basePath, String landingPage) {
-      return new DocumentationSettingsDto("develop", basePath, landingPage);
+    private void verifyAppended(String basePath, String landingPage) {
+      ArgumentCaptor<DocumentationSettingsDto> captor = ArgumentCaptor.forClass(DocumentationSettingsDto.class);
+      verify(appender).appendEmbedded(eq("documentationViewer"), captor.capture());
+
+      DocumentationSettingsDto dto = captor.getValue();
+      assertThat(dto.getBranchName()).isEqualTo("develop");
+      assertThat(dto.getBasePath()).isEqualTo(basePath);
+      assertThat(dto.getLandingPage()).isEqualTo(landingPage);
     }
   }
 

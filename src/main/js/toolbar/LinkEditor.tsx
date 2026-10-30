@@ -20,7 +20,7 @@ import { $getSelection, $isRangeSelection } from "lexical";
 import { $findMatchingParent } from "@lexical/utils";
 import { $createLinkNode, $isLinkNode, TOGGLE_LINK_COMMAND } from "@lexical/link";
 import { InputField } from "@scm-manager/ui-components";
-import { Button } from "@scm-manager/ui-buttons";
+import { Button } from "@scm-manager/ui-core";
 
 type LinkEditorProps = {
   close: () => void;

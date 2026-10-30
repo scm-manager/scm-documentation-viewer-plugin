@@ -1,0 +1,2 @@
+- type: fixed
+  description: Documentation link missing for base paths with a leading slash, such as the default /docs

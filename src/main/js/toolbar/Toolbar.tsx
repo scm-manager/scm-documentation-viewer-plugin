@@ -15,7 +15,7 @@
  */
 
 import styled from "styled-components";
-import { Button, Icon } from "@scm-manager/ui-buttons";
+import { Button, Icon } from "@scm-manager/ui-core";
 import React, { ReactElement } from "react";
 
 export const Toolbar = styled.div`

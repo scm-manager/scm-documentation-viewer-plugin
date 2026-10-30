@@ -14,15 +14,15 @@
  * along with this program. If not, see https://www.gnu.org/licenses/.
  */
 
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { ChangeEvent, FC, useCallback, useEffect, useState } from "react";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { $getSelection, $isRangeSelection } from "lexical";
 import { $findMatchingParent } from "@lexical/utils";
 import { $isCodeNode } from "@lexical/code";
 import styled from "styled-components";
-import { Select } from "@scm-manager/ui-components";
+import { Select } from "@scm-manager/ui-core";
 
-// @ts-expect-error
+// noinspection CssUnresolvedCustomProperty
 const LangSelect = styled(Select)`
   :focus {
     z-index: 100;
@@ -85,12 +85,12 @@ const CodeLanguageSelector: FC<Props> = ({ disabled, selected = "text" }) => {
     setLanguage(selected);
   }, [selected]);
 
-  const changeLanguage = (event: string) => {
+  const changeLanguage = (event: ChangeEvent<HTMLSelectElement>) => {
     editor.update(() => {
       const codeNode = $getCodeNode();
       if (codeNode) {
-        codeNode.setLanguage(event);
-        setLanguage(event);
+        codeNode.setLanguage(event.target.value);
+        setLanguage(event.target.value);
       }
     });
   };

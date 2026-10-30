@@ -114,7 +114,7 @@ public class RepositoryLinkEnricher implements HalEnricher {
       return false;
     }
 
-    if (!ValidationUtil.isPathValid(settings.getBasePath())) {
+    if (!ValidationUtil.isPathValid(withoutLeadingSlash(settings.getBasePath()))) {
       log.trace("documentation base path is not a valid path '{}' for repository {}", settings.getBasePath(), repository);
       return false;
     }
@@ -130,6 +130,12 @@ public class RepositoryLinkEnricher implements HalEnricher {
     }
 
     return true;
+  }
+
+  // the base path is relative to the repository root, so "/docs" means the same as "docs",
+  // but ValidationUtil rejects paths starting with a slash
+  private static String withoutLeadingSlash(String path) {
+    return path.startsWith("/") ? path.substring(1) : path;
   }
 
   private DocumentationYamlExists isDocumentationYamlExisting(RepositoryService repositoryService) throws IOException {
